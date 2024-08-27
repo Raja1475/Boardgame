@@ -8,7 +8,7 @@ RUN mvn package
 
 FROM openjdk:17.0.1-jdk-slim
 WORKDIR /app
-COPY --from=build /app/target/database_service_project.jar /app/database_service_project.jar
+COPY --from=build /app/target/*.jar /app/database_service_project.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "database_service_project.jar"]
 
