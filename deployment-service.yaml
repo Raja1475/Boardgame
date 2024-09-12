@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: boardgame-deployment
+  namespace: boardgame
   labels:
     app: boardgame
 spec:
@@ -24,6 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: boardgame-service
+  namespace: boardgame
 spec:
   type: LoadBalancer  # This exposes the service externally
   selector:
