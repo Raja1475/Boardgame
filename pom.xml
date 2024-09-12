@@ -8,12 +8,6 @@
 		<version>2.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.javaproject</groupId>
-	<artifactId>database_service_project</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
-	<name>database_service_project</name>
-	<description>Project for Spring Boot</description>
-	<packaging>jar</packaging>
 	<properties>
 		<java.version>11</java.version>
 		<jacoco.version>0.8.7</jacoco.version>
