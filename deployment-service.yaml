@@ -1,12 +1,14 @@
 apiVersion: apps/v1
-kind: Deployment # Kubernetes resource kind we are creating
+kind: Deployment
 metadata:
   name: boardgame-deployment
+  labels:
+    app: boardgame
 spec:
+  replicas: 2  # Number of pods
   selector:
     matchLabels:
       app: boardgame
-  replicas: 2 # Number of replicas that will be created for this deployment
   template:
     metadata:
       labels:
@@ -14,23 +16,19 @@ spec:
     spec:
       containers:
         - name: boardgame
-          image: adijaiswal/boardgame:latest # Image that will be used to containers in the cluster
-          imagePullPolicy: Always
+          image: raja1475/boardgame:1.0.0
           ports:
-            - containerPort: 8080 # The port that the container is running on in the cluster
-
-
+            - containerPort: 8080  # Assuming your app runs on port 8080
 ---
-
-apiVersion: v1 # Kubernetes API version
-kind: Service # Kubernetes resource kind we are creating
-metadata: # Metadata of the resource kind we are creating
-  name: boardgame-ssvc
+apiVersion: v1
+kind: Service
+metadata:
+  name: boardgame-service
 spec:
+  type: LoadBalancer  # This exposes the service externally
   selector:
     app: boardgame
   ports:
-    - protocol: "TCP"
-      port: 8080 # The port that the service is running on in the cluster
-      targetPort: 8080 # The port exposed by the service
-  type: LoadBalancer # type of the service.
+    - protocol: TCP
+      port: 80
+      targetPort: 8080  # Mapping external port 80 to internal container port 8080
